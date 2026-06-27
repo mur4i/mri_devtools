@@ -759,7 +759,7 @@ SetParticleFxLoopedAlpha(handle, ${color.a.toFixed(2)})${evoCode}`;
         <div className="flex flex-col gap-9 shrink-0">
           <div className="flex items-center gap-3 relative w-[180px]">
             <Laptop className="h-6 w-6 text-primary drop-shadow-[0_0_8px_rgba(0,230,153,0.6)] shrink-0" />
-            <h2 className={`font-bold text-lg tracking-wider bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-transparent white-space-nowrap transition-opacity duration-300 ${
+            <h2 className={`font-bold text-lg tracking-wider text-white whitespace-nowrap transition-opacity duration-300 ${
               sidebarHovered ? 'opacity-100' : 'opacity-0 pointer-events-none'
             }`}>
               MRI <span className="text-primary">DevTools</span>
@@ -929,7 +929,7 @@ SetParticleFxLoopedAlpha(handle, ${color.a.toFixed(2)})${evoCode}`;
                       step="0.1" 
                       value={particleScale}
                       onChange={(e) => handleScaleChange(parseFloat(e.target.value))}
-                      className="w-full h-1 rounded-lg appearance-none bg-neutral-800 accent-primary cursor-pointer"
+                      className="w-full appearance-none bg-transparent cursor-pointer"
                     />
                   </div>
 
@@ -944,22 +944,22 @@ SetParticleFxLoopedAlpha(handle, ${color.a.toFixed(2)})${evoCode}`;
                     <div className="flex flex-col gap-2 bg-neutral-950/20 p-2.5 rounded-lg border border-border/20">
                       <div className="flex items-center gap-3">
                         <span className="text-[10px] font-bold text-red-500 w-3">R</span>
-                        <input type="range" min="0" max="1" step="0.01" value={color.r} onChange={(e) => handleColorChange('r', parseFloat(e.target.value))} className="w-full h-1 appearance-none bg-neutral-800 accent-red-500 rounded cursor-pointer" />
+                        <input type="range" min="0" max="1" step="0.01" value={color.r} onChange={(e) => handleColorChange('r', parseFloat(e.target.value))} className="w-full appearance-none bg-transparent cursor-pointer slider-red" />
                         <span className="text-[10px] text-neutral-500 w-6 text-right">{Math.round(color.r*255)}</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <span className="text-[10px] font-bold text-emerald-500 w-3">G</span>
-                        <input type="range" min="0" max="1" step="0.01" value={color.g} onChange={(e) => handleColorChange('g', parseFloat(e.target.value))} className="w-full h-1 appearance-none bg-neutral-800 accent-emerald-500 rounded cursor-pointer" />
+                        <input type="range" min="0" max="1" step="0.01" value={color.g} onChange={(e) => handleColorChange('g', parseFloat(e.target.value))} className="w-full appearance-none bg-transparent cursor-pointer slider-green" />
                         <span className="text-[10px] text-neutral-500 w-6 text-right">{Math.round(color.g*255)}</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <span className="text-[10px] font-bold text-blue-500 w-3">B</span>
-                        <input type="range" min="0" max="1" step="0.01" value={color.b} onChange={(e) => handleColorChange('b', parseFloat(e.target.value))} className="w-full h-1 appearance-none bg-neutral-800 accent-blue-500 rounded cursor-pointer" />
+                        <input type="range" min="0" max="1" step="0.01" value={color.b} onChange={(e) => handleColorChange('b', parseFloat(e.target.value))} className="w-full appearance-none bg-transparent cursor-pointer slider-blue" />
                         <span className="text-[10px] text-neutral-500 w-6 text-right">{Math.round(color.b*255)}</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <span className="text-[10px] font-bold text-neutral-400 w-3">A</span>
-                        <input type="range" min="0" max="1" step="0.01" value={color.a} onChange={(e) => handleColorChange('a', parseFloat(e.target.value))} className="w-full h-1 appearance-none bg-neutral-800 accent-neutral-500 rounded cursor-pointer" />
+                        <input type="range" min="0" max="1" step="0.01" value={color.a} onChange={(e) => handleColorChange('a', parseFloat(e.target.value))} className="w-full appearance-none bg-transparent cursor-pointer slider-alpha" />
                         <span className="text-[10px] text-neutral-500 w-6 text-right">{color.a.toFixed(2)}</span>
                       </div>
                     </div>
