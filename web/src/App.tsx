@@ -752,7 +752,7 @@ SetParticleFxLoopedAlpha(handle, ${color.a.toFixed(2)})${evoCode}`;
       <aside 
         onMouseEnter={() => setSidebarHovered(true)}
         onMouseLeave={() => setSidebarHovered(false)}
-        className={`bg-card/90 border-r border-border/60 py-7 flex flex-col justify-between shrink-0 relative transition-all duration-300 ease-in-out z-50 ${
+        className={`bg-card/90 border-r border-border/60 py-7 flex flex-col justify-between shrink-0 relative transition-[width,padding] duration-200 ease-out z-50 will-change-[width,padding] ${
           sidebarHovered ? 'w-[220px] px-5' : 'w-[72px] px-3.5'
         }`}
       >
@@ -779,7 +779,7 @@ SetParticleFxLoopedAlpha(handle, ${color.a.toFixed(2)})${evoCode}`;
                 Particles
               </span>
             </MriButton>
-
+ 
             <MriButton 
               variant={activeTab === 'sounds' ? 'default' : 'ghost'} 
               onClick={() => setActiveTab('sounds')}
@@ -794,10 +794,10 @@ SetParticleFxLoopedAlpha(handle, ${color.a.toFixed(2)})${evoCode}`;
             </MriButton>
           </nav>
         </div>
-
+ 
         <div className="flex flex-col gap-4 shrink-0">
-          <div className={`bg-neutral-900/40 border border-neutral-800/50 rounded-xl p-3.5 transition-all duration-300 ${
-            sidebarHovered ? 'opacity-100 max-h-[300px]' : 'opacity-0 max-h-0 overflow-hidden pointer-events-none'
+          <div className={`bg-neutral-900/40 border border-neutral-800/50 rounded-xl p-3.5 transition-opacity duration-200 ease-out ${
+            sidebarHovered ? 'opacity-100 static visible' : 'opacity-0 absolute invisible pointer-events-none'
           }`}>
             <h3 className="font-semibold text-xs text-neutral-400 mb-2 flex items-center gap-1.5">
               Controls
