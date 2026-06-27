@@ -298,6 +298,7 @@ end)
 
 -- --- Chat Commands ---
 RegisterCommand("devtools", function()
+    if not IsAceAllowed('command') then return end
     setUIDisplay(not isUIOpen, "particles")
 end)
 
