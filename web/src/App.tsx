@@ -6,8 +6,7 @@ import {
   MriCardHeader, 
   MriCardContent,
   MriBadge,
-  MriSearchInput,
-  MriScrollArea
+  MriSearchInput
 } from '@mriqbox/ui-kit';
 import { 
   Laptop, 
@@ -80,6 +79,7 @@ export default function App() {
   const [autoplay, setAutoplay] = useState(true);
   const [hideUnsetted, setHideUnsetted] = useState(true);
   const [selectedSoundIdx, setSelectedSoundIdx] = useState<number>(0);
+  const [visibleCount, setVisibleCount] = useState(100);
 
   // Favorites & Recents Persistent states
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
@@ -182,6 +182,12 @@ export default function App() {
       }
     }
   }, [selectedSoundIdx, activeTab, open]);
+
+  useEffect(() => {
+    setVisibleCount(100);
+  }, [soundSearch, activeSoundTab]);
+
+
 
   // Dragging mouse listener
   const handleDragStart = (e: React.MouseEvent) => {
@@ -572,6 +578,13 @@ SetParticleFxLoopedAlpha(handle, ${color.a.toFixed(2)})${evoCode}`;
       return next;
     });
   };
+
+  const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
+    const target = e.currentTarget;
+    if (target.scrollHeight - target.scrollTop - target.clientHeight < 150) {
+      setVisibleCount(prev => Math.min(prev + 100, filteredSoundsList.length));
+    }
+  }, [filteredSoundsList.length]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -1098,9 +1111,12 @@ SetParticleFxLoopedAlpha(handle, ${color.a.toFixed(2)})${evoCode}`;
             />
 
             {/* Sound List viewport */}
-            <MriScrollArea className="flex-1 min-h-0 pr-1">
+            <div 
+              className="flex-grow overflow-y-auto pr-1"
+              onScroll={handleScroll}
+            >
               <div className="flex flex-col gap-2 pr-2">
-              {filteredSoundsList.slice(0, 100).map((sound, i) => {
+              {filteredSoundsList.slice(0, visibleCount).map((sound, i) => {
                 const audioName = sound.AudioName;
                 const audioRef = sound.AudioRef || "HUD_FRONTEND_DEFAULT_SOUNDSET";
                 const key = `${audioName}|${audioRef}`;
@@ -1173,13 +1189,13 @@ SetParticleFxLoopedAlpha(handle, ${color.a.toFixed(2)})${evoCode}`;
                    "No sounds match your search."}
                 </div>
               )}
-              {filteredSoundsList.length > 100 && (
-                <div className="text-center text-[10px] text-muted-foreground py-2">
-                  Showing the first 100 of {filteredSoundsList.length} results
+              {visibleCount < filteredSoundsList.length && (
+                <div className="text-center text-[10px] text-muted-foreground py-2 font-mono">
+                  Loading more sounds on scroll... ({visibleCount} of {filteredSoundsList.length})
                 </div>
               )}
               </div>
-            </MriScrollArea>
+            </div>
           </div>
         )}
       </main>
